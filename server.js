@@ -32,8 +32,6 @@ app.get("/", (req, res) => {
     res.json({ message: "Server.js is running" });
 });
 
-
-
 require("./app/routes/qup.routes")(app);
 
 app.listen(serverPort, () => {

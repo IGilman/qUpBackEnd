@@ -7,7 +7,7 @@ A few things I've learned so far before committing this repo to GitHub:
     +MEAN Stack (Mongo, Express, Angular and Node). My Node code is going to be in a different repo
     +Basic Authentication/API Protection/Route Guards/JWTs --> all via Auth0
 
-Backend repo here: https://github.com/IGilman/qUpFrontEnd
+Frontend repo here: https://github.com/IGilman/qUpFrontEnd
 
 More things I anticipate learning
 
