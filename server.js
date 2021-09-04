@@ -1,14 +1,16 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
+
 const { clientOrigins, serverPort } = require("./app/config/env.dev");
 
 const app = express();
 
 app.use(cors({ origin: clientOrigins }));
 
-const db = require("./app/models")
+const db = require("./app/config/db.config")
 
-db.mongoose
+mongoose
     .connect(db.url, {
         useNewUrlParser: true,
         useUnifiedTopology: true

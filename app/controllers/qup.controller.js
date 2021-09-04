@@ -1,5 +1,4 @@
-const db = require("../models");
-const Qup = db.qup;
+const { Qups, Games } = require('../models/qup.models');
 
 // Create and Save a new profile
 exports.create = (req, res) => {
@@ -10,7 +9,7 @@ exports.create = (req, res) => {
     }
 
     // Create a Profile
-    const qup = new Qup({
+    const qup = new Qups({
         username: req.body.username,
         game: req.body.game,
         kd: req.body.kd,
@@ -19,8 +18,7 @@ exports.create = (req, res) => {
     });
 
     // Save Profile in the database
-    qup
-        .save(qup)
+    qup.save(qup)
         .then(data => {
             res.send(data);
         })
@@ -32,12 +30,12 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve all profiles from the database.
+// Retrieve all profiles from the database for profiles.
 exports.findAll = (req, res) => {
     const game = req.query.game;
     var condition = game ? { game: { $regex: new RegExp(game), $options: "i" } } : {};
 
-    Qup.find(condition)
+    Qups.find(condition)
         .then(data => {
             res.send(data);
         })
@@ -45,6 +43,21 @@ exports.findAll = (req, res) => {
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving profiles."
+            });
+        });
+};
+
+//find all games
+exports.findAllGames = (req, res) => {
+
+    Games.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving games."
             });
         });
 };

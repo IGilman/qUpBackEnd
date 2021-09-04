@@ -8,7 +8,13 @@ module.exports = app => {
     router.post("/", qup.create);
 
     // Retrieve all Profiles
-    router.get("/", checkJwt, qup.findAll);
+
+    //ADD THE JWT BACK IN AFTER TESTING
+    //router.get("/", checkJwt, qup.findAll);
+
+    router.get("/", qup.findAll);
+
+    router.get("/games", qup.findAllGames)
 
     app.use('/api/qup', router);
 };
