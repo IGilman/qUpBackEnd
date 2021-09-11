@@ -6,16 +6,7 @@ const { clientOrigins, serverPort } = require("./app/config/env.dev");
 
 const app = express();
 
-app.use(cors({
-    origin: clientOrigins,
-    // origin: "*",
-    credentials: true,
-    allowedHeaders: "*",
-    exposedHeaders: "test",
-    credentials: true,
-    "Access-Control-Allow-Credentials": true,
-})
-);
+app.use(cors({ origin: clientOrigins }));
 
 const db = require("./app/config/db.config")
 
@@ -40,16 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-    res.set({
-        "Content-Type": "text/html",
-        "X-Content-Type-Options": "nosniff",
-        "Access-Control-Allow-Credentials": true,
-        'warning': 'testing'
-    })
-
     res.json({ message: "Server.js is running" });
-
-
 });
 
 require("./app/routes/qup.routes")(app);
@@ -57,6 +39,3 @@ require("./app/routes/qup.routes")(app);
 app.listen(serverPort, () => {
     console.log(`Server is running on port ${serverPort}.`);
 });
-
-
-
